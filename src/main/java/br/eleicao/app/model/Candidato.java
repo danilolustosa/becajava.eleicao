@@ -1,6 +1,8 @@
 package br.eleicao.app.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,29 +24,11 @@ public class Candidato {
 	private Long Id;
 	private String Numero;
 	private String Nome;
+	private String Tipo;
 	@ManyToOne
     @JoinColumn(name ="MunicipioId")
 	private Municipio Municipio;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "Voto", 
-        joinColumns = { @JoinColumn(name = "CandidatoId") }, 
-        inverseJoinColumns = { @JoinColumn(name = "EleitorId") }
-    )
-    Set<Eleitor> Eleitores = new HashSet<>();
-	
-	
-	
-	
-	public Set<Eleitor> getEleitores() {
-		return Eleitores;
-	}
-
-	public void setEleitores(Set<Eleitor> eleitores) {
-		Eleitores = eleitores;
-	}
-
 	public Long getId() {
 		return Id;
 	}
@@ -75,6 +59,14 @@ public class Candidato {
 
 	public void setMunicipio(Municipio municipio) {
 		Municipio = municipio;
+	}
+
+	public String getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(String tipo) {
+		Tipo = tipo;
 	}
 
 	
